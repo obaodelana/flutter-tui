@@ -5,15 +5,14 @@ import 'package:flutter_tui/src/widget.dart';
 
 void runApp(Widget widget) {
   stdout.write("\x1b[?1049h");  // Enter alternate buffer
-  stdout.write("\x1b[2J");      // Clear screen
-  stdout.write("\x1b[H");       // Reset cursor
   stdout.write("\x1b[?25l");    // Hide cursor
   stdin.echoMode = false;       // Don't show characters
   stdin.lineMode = false;       // Don't wait until the user presses enter
 
   Context context = Context();
-  bool quit = false;
+  context.clearScreen();
 
+  bool quit = false;
   // Exit condition
   stdin.listen((List<int> bytes) {
     if (bytes.isNotEmpty && bytes.contains(3)) { // Ctrl+C (ASCII code 3)
@@ -21,9 +20,13 @@ void runApp(Widget widget) {
     }
   });
 
-  context.writeToScreen(widget.build(context));
+  context.writeToScreen(widget.build(context)); // Initial write
   while (!quit) {
-
+    // Redraw when there's an update
+    if (widget.didUpdateWidget()) {
+      context.clearScreen();
+      context.writeToScreen(widget.build(context));
+    }
   }
 
   stdin.echoMode = true;

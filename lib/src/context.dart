@@ -14,7 +14,13 @@ class Context {
       return;
     }
 
+    cursorPosition = (x: x, y: y);
     stdout.write("\x1b[$y;${x}H");
+  }
+
+  void clearScreen() {
+    stdout.write("\x1b[2J");  // Clear screen
+    moveCursorTo(0, 0);
   }
 
   void writeToScreen(String msg, [int? x, int? y]) {

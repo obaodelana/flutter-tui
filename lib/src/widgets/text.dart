@@ -1,18 +1,17 @@
 import 'package:flutter_tui/src/context.dart';
-import 'package:flutter_tui/src/widget.dart';
+import 'package:flutter_tui/src/models/render_object.dart';
+import 'package:flutter_tui/src/stateless_widget.dart';
 
-class Text implements Widget {
+class Text extends StatelessWidget {
   final String text;
 
   const Text(this.text);
 
   @override
-  String build(Context context) {
-    return text;
-  }
-  
-  @override
-  bool didUpdateWidget() {
-    return false;
+  RenderObject build(Window context) {
+    return RenderObject(
+      rect: (x:),
+      text: text
+    );
   }
 }

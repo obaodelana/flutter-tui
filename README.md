@@ -4,7 +4,7 @@ Imagine writing terminal user interfaces with Flutter's syntax!
 
 ```dart
 void main() {
-	runApp(Center(Text("Hello, World!")))
+    runApp(Center(child: Text("Hello, World!")))
 }
 ```
 

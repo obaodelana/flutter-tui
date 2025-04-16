@@ -1,17 +1,12 @@
-import 'package:meta/meta.dart';
-
 import 'package:flutter_tui/src/models/size.dart';
-import 'package:flutter_tui/src/models/render_object.dart';
+import 'package:flutter_tui/src/models/writer_object.dart';
+import 'package:uuid/uuid.dart';
 
 abstract class Widget {
-  @protected
-  Size? size;
-  @protected
-  RenderObject? lastBuild;
+  late final String key;
+  WriterObject build(Size constraint);
 
-  RenderObject build(Size constraint);
-
-  bool didUpdateWidget(Widget oldWidget) {
-    return oldWidget.lastBuild == lastBuild;
+  Widget({String? key}) {
+	this.key = key ?? Uuid().v1();
   }
 }

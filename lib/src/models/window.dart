@@ -10,14 +10,18 @@ class Window {
 
   Window({required Size size}) : _size = size, _cursorPosition = size.start;
 
-  String moveCursorTo(int x, int y) {
-    Position offset = Position(x + _size.minX, y + _size.minX);
-    if (!_size.withinBounds(offset)) {
+  String _moveCursorTo(Position pos) {
+    if (!_size.withinBounds(pos)) {
       return "";
     }
 
-    _cursorPosition += offset;
-    return "\x1b[${offset.y};${offset.x}H"; // Move cursor
+    _cursorPosition = pos;
+    return "\x1b[${pos.y};${pos.x}H"; // Move cursor
+  }
+
+  String moveCursorTo(int x, int y) {
+    Position pos = Position(x + _size.minX, y + _size.minY);
+    return _moveCursorTo(pos);
   }
 
   // Custom erase screen for window
@@ -35,12 +39,16 @@ class Window {
   }
 
   String write(String msg, [int? x, int? y]) {
-    String writeSequence = "";
-
     // Either both are specified or none
     assert((x == null && y == null) || (x != null && y != null));
+
+    String writeSequence = "";
+
     if (x != null && y != null) {
       writeSequence += moveCursorTo(x, y);
+    } else {
+      // Make sure cursor is at the correct position
+      writeSequence += _moveCursorTo(_cursorPosition);
     }
 
     final msgLen = msg.length;

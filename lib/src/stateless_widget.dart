@@ -1,5 +1,5 @@
 import 'package:flutter_tui/src/widget.dart';
 
-abstract class StatelessWidget implements Widget {
-  const StatelessWidget();
+abstract class StatelessWidget extends Widget {
+  // Just in case...
 }

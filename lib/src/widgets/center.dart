@@ -1,25 +1,31 @@
-import 'package:flutter_tui/src/context.dart';
-import 'package:flutter_tui/src/models/render_object.dart';
+import 'package:flutter_tui/src/models/position.dart';
+import 'package:flutter_tui/src/models/size.dart';
+import 'package:flutter_tui/src/models/writer_object.dart';
 import 'package:flutter_tui/src/stateless_widget.dart';
 import 'package:flutter_tui/src/widget.dart';
 
 class Center extends StatelessWidget {
   final Widget child;
 
-  const Center({required this.child});
+  Center({required this.child});
 
   @override
-  RenderObject build(Window context) {
-    final body = child.build(context);
+  WriterObject build(Size constraint) {
+    final body = child.build(constraint);
+    final w = body.size.width, h = body.size.height;
 
-    return RenderObject(
-      rect: (
-        x: (context.width - body.rect.w)  ~/ 2,
-        y: context.height ~/ 2,
-        w: body.rect.w,
-        h: body.rect.h
+    return WriterObject(
+      widgetKey: key,
+      size: Size(
+        start: Position(
+          (constraint.width - w)  ~/ 2,
+          (constraint.height - h) ~/ 2
+        ),
+        width: w,
+        height: h
       ),
-      text: body.text
+      text: body.text,
+      children: [body]
     );
   }
 }

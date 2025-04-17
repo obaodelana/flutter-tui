@@ -5,7 +5,8 @@ class Size {
   final int width;
   final int height;
 
-  const Size({required this.start, required this.width, required this.height});
+  const Size({required this.width, required this.height, Position? start})
+   : start = start ?? const Position.zero();
 
   int get minX => start.x;
   int get maxX => width + start.x - 1;

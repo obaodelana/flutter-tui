@@ -7,6 +7,6 @@ abstract class Widget {
   WriterObject build(Size constraint);
 
   Widget({String? key}) {
-	this.key = key ?? Uuid().v1();
+    this.key = key ?? Uuid().v1();
   }
 }

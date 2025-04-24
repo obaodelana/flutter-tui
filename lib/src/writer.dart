@@ -45,15 +45,29 @@ class Writer {
     var file = File("log.txt");
     file.writeAsStringSync("");
 
+    // Clear screen
+    final clearScreenInstructions = Window(size: _root!.size).clear();
+    for (final instr in clearScreenInstructions) {
+      stdout.write(instr);
+    }
+
     List<WriteObject> stack = [_root!];
     while (stack.isNotEmpty) {
       WriteObject currentObj = stack.removeLast(); // Object at top of stack
       file.writeAsStringSync("${currentObj.size}\n", mode: FileMode.append);
 
       if (currentObj.hasText) {
-        final currentWindow = Window(size: currentObj.size);
+        var pointer = currentObj;
+        var startingPosition = pointer.size.start;
+        while (pointer.hasParent) {
+          pointer = pointer.parent!;
+          startingPosition += pointer.size.start;
+        }
+
+        final currentWindow = Window(
+          size: currentObj.size.copy(start: startingPosition)
+        );
         final writeSequence = currentWindow.write(currentObj.text!);
-        // file.writeAsStringSync("$writeSequence\n", mode: FileMode.append);
         for (final write in writeSequence) {
           stdout.write(write);
         }

@@ -8,6 +8,7 @@ class WriteObject {
 
   bool get hasText => text != null;
 
+  bool get hasParent => _parent != null;
   WriteObject? get parent => _parent;
   // Only set if parent is not already set
   set parent(WriteObject? value) => _parent ??= value;

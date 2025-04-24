@@ -8,6 +8,14 @@ class Size {
   const Size({required this.width, required this.height, Position? start})
    : start = start ?? const Position.zero();
 
+  Size copy({int? width, int? height, Position? start}) {
+    return Size(
+      width: width ?? this.width,
+      height: height ?? this.height,
+      start: start ?? this.start
+    );
+  }
+
   int get minX => start.x;
   int get maxX => width + start.x;
 

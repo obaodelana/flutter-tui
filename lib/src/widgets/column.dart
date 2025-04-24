@@ -3,35 +3,35 @@ import 'package:flutter_tui/src/models/size.dart';
 import 'package:flutter_tui/src/models/write_object.dart';
 import 'package:flutter_tui/src/framework.dart';
 
-class Row extends StatelessWidget {
+class Column extends StatelessWidget {
   final List<Widget> children;
 
-  Row({required this.children});
+  Column({required this.children});
 
   @override
   WriteObject build(Size constraint) {
-    // Equal width
-    int childWidth = constraint.width ~/ children.length;
-    var maxChildHeight = 1;
+    // Equal height
+    int childHeight = constraint.height ~/ children.length;
+    var maxChildWidth = 1;
 
     final sizedChildren = <WriteObject>[];
     for (int i = 0; i < children.length; i++) {
       var obj = children[i].build(Size(
-        width: childWidth,
-        height: constraint.height,
-        start: Position.x(i * childWidth)
+        width: constraint.width,
+        height: childHeight,
+        start: Position.y(i * childHeight)
       ));
       sizedChildren.add(obj);
 
-      if (obj.size.height > maxChildHeight) {
-        maxChildHeight = obj.size.height;
+      if (obj.size.width > maxChildWidth) {
+        maxChildWidth = obj.size.width;
       }
     }
-
+    
     return WriteObject(
       size: constraint.copy(
-        height: maxChildHeight,
-        width: childWidth * children.length
+        width: maxChildWidth,
+        height: childHeight * children.length
       ),
       children: sizedChildren
     );

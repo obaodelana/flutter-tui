@@ -14,13 +14,11 @@ class Center extends StatelessWidget {
     final w = body.size.width, h = body.size.height;
 
     // Center child
-    body.size = Size(
+    body.size = body.size.copy(
       start: Position(
         (constraint.width - w)  ~/ 2,
         (constraint.height - h) ~/ 2
-      ) + constraint.start,
-      width: w,
-      height: h
+      )
     );
 
     return WriteObject(

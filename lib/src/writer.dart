@@ -42,13 +42,18 @@ class Writer {
       throw Exception("Call createWriter() first!");
     }
 
+    var file = File("log.txt");
+    file.writeAsStringSync("");
+
     List<WriteObject> stack = [_root!];
     while (stack.isNotEmpty) {
       WriteObject currentObj = stack.removeLast(); // Object at top of stack
+      file.writeAsStringSync("${currentObj.size}\n", mode: FileMode.append);
 
       if (currentObj.hasText) {
         final currentWindow = Window(size: currentObj.size);
         final writeSequence = currentWindow.write(currentObj.text!);
+        // file.writeAsStringSync("$writeSequence\n", mode: FileMode.append);
         for (final write in writeSequence) {
           stdout.write(write);
         }

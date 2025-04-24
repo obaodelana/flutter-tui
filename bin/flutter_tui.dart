@@ -7,8 +7,8 @@ void main(List<String> arguments) {
   runApp(Center(
     child: Row(
       children: [
-        for (int i = 0; i < 5; i++)
-          Text("${i+1}")
+        for (int i = 0; i < 10; i++)
+          Center(child: Text("${i+1}"))
       ]
     )
   )

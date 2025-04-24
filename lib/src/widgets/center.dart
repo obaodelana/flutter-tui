@@ -18,7 +18,7 @@ class Center extends StatelessWidget {
       start: Position(
         (constraint.width - w)  ~/ 2,
         (constraint.height - h) ~/ 2
-      ),
+      ) + constraint.start,
       width: w,
       height: h
     );

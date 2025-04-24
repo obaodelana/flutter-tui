@@ -18,7 +18,7 @@ class Text extends StatelessWidget {
     }
 
     return WriteObject(
-      size: Size(width: width, height: height),
+      size: Size(width: width, height: height, start: constraint.start),
       text: text
     );
   }

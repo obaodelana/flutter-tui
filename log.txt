@@ -1,1 +1,110 @@
-[, H, e, l, l, o, ,,  , W, o, r, l, d]
+Size(
+start: Position(0, 0);
+,width: 80
+,height: 25
+);
+Size(
+start: Position(0, 0);
+,width: 80
+,height: 25
+);
+Size(
+start: Position(72, 0);
+,width: 8
+,height: 25
+);
+Size(
+start: Position(75, 12);
+,width: 2
+,height: 1
+);
+Size(
+start: Position(64, 0);
+,width: 8
+,height: 25
+);
+Size(
+start: Position(67, 12);
+,width: 1
+,height: 1
+);
+Size(
+start: Position(56, 0);
+,width: 8
+,height: 25
+);
+Size(
+start: Position(59, 12);
+,width: 1
+,height: 1
+);
+Size(
+start: Position(48, 0);
+,width: 8
+,height: 25
+);
+Size(
+start: Position(51, 12);
+,width: 1
+,height: 1
+);
+Size(
+start: Position(40, 0);
+,width: 8
+,height: 25
+);
+Size(
+start: Position(43, 12);
+,width: 1
+,height: 1
+);
+Size(
+start: Position(32, 0);
+,width: 8
+,height: 25
+);
+Size(
+start: Position(35, 12);
+,width: 1
+,height: 1
+);
+Size(
+start: Position(24, 0);
+,width: 8
+,height: 25
+);
+Size(
+start: Position(27, 12);
+,width: 1
+,height: 1
+);
+Size(
+start: Position(16, 0);
+,width: 8
+,height: 25
+);
+Size(
+start: Position(19, 12);
+,width: 1
+,height: 1
+);
+Size(
+start: Position(8, 0);
+,width: 8
+,height: 25
+);
+Size(
+start: Position(11, 12);
+,width: 1
+,height: 1
+);
+Size(
+start: Position(0, 0);
+,width: 8
+,height: 25
+);
+Size(
+start: Position(3, 12);
+,width: 1
+,height: 1
+);

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter_tui/src/framework.dart';
 import 'package:flutter_tui/src/writer.dart';
 
-// TODO: Align
 // TODO: Checkbox
 // TODO: Grid
 // TODO: Input field
@@ -35,6 +34,7 @@ void runApp(Widget parent) {
 
   stdin.echoMode = echoMode;
   stdin.lineMode = lineMode;
+  stdout.write("\x1b[2J");      // Clear screen
   stdout.write("\x1b[?25h");    // Unhide cursor
   stdout.write("\x1b[?1049l");  // Exit alternate buffer
   stdout.write("\x1b[?47l");    // Restore screen

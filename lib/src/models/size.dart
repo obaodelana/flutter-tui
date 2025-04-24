@@ -9,10 +9,10 @@ class Size {
    : start = start ?? const Position.zero();
 
   int get minX => start.x;
-  int get maxX => width + start.x - 1;
+  int get maxX => width + start.x;
 
   int get minY => start.y;
-  int get maxY => height + start.y - 1;
+  int get maxY => height + start.y;
 
   bool withinBounds(Position pos) {
     if (pos.x < minX || pos.x > maxX || pos.y < minY || pos.y > maxY) {
@@ -30,4 +30,13 @@ class Size {
 
   @override
   int get hashCode => Object.hash(start, width, height);
+
+  @override
+  String toString() {
+    return "Size(\n"
+            "start: $start\n,"
+            "width: $width\n,"
+            "height: $height\n"
+            ");";
+  }
 }

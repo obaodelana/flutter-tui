@@ -1,7 +1,7 @@
 import 'package:flutter_tui/src/models/position.dart';
 import 'package:flutter_tui/src/models/size.dart';
 
-// Represents a window. Don't print directly to stdout
+// Represents a window. Doesn't print directly to stdout
 class Window {
   final Size _size;
   Size get size => _size;
@@ -25,30 +25,30 @@ class Window {
   }
 
   // Custom erase screen for window
-  String clear() {
-    String clearSequence = "";
+  List<String> clear() {
+    final clearSequence = <String>[];
     for (int y = 0; y < _size.height; y++) {
-      clearSequence += moveCursorTo(0, y);
-      clearSequence += (" " * _size.width); // Overwrite with spaces
+      clearSequence.add(moveCursorTo(0, y));
+      clearSequence.add(" " * _size.width); // Overwrite with spaces
     }
 
     // Reset cursor
-    clearSequence += moveCursorTo(0, 0);
+    clearSequence.add(moveCursorTo(0, 0));
 
     return clearSequence;
   }
 
-  String write(String msg, [int? x, int? y]) {
+  List<String> write(String msg, [int? x, int? y]) {
     // Either both are specified or none
     assert((x == null && y == null) || (x != null && y != null));
 
-    String writeSequence = "";
+    final writeSequence = <String>[];
 
     if (x != null && y != null) {
-      writeSequence += moveCursorTo(x, y);
+      writeSequence.add(moveCursorTo(x, y));
     } else {
       // Make sure cursor is at the correct position
-      writeSequence += _moveCursorTo(_cursorPosition);
+      writeSequence.add(_moveCursorTo(_cursorPosition));
     }
 
     final msgLen = msg.length;
@@ -70,14 +70,22 @@ class Window {
           }
         }
 
-        writeSequence += msg[i];
+        writeSequence.add(msg[i]);
         _cursorPosition += Position.x(1);
       }
     } else { // Else, print all at once
-      writeSequence += msg;
+      writeSequence.add(msg);
       _cursorPosition = Position(newX % _size.width, newY);
     }
 
     return writeSequence;
+  }
+
+  @override
+  String toString() {
+    return "Window(\n"
+      "\tsize: $size,\n"
+      "\tcursorPosition: $_cursorPosition\n"
+      ");";
   }
 }

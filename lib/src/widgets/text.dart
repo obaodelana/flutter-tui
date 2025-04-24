@@ -1,6 +1,6 @@
 import 'package:flutter_tui/src/models/size.dart';
-import 'package:flutter_tui/src/models/writer_object.dart';
-import 'package:flutter_tui/src/stateless_widget.dart';
+import 'package:flutter_tui/src/models/write_object.dart';
+import 'package:flutter_tui/src/framework.dart';
 
 class Text extends StatelessWidget {
   final String text;
@@ -8,17 +8,16 @@ class Text extends StatelessWidget {
   Text(this.text);
 
   @override
-  WriterObject build(Size constraint) {
+  WriteObject build(Size constraint) {
     int textLen = text.length;
     int width = textLen % constraint.width;
-    int height = textLen ~/ constraint.height;
+    int height = (textLen / constraint.height).ceil();
     
     if (height > constraint.height) {
       // TODO: Handle overflow
     }
 
-    return WriterObject(
-      widgetKey: key,
+    return WriteObject(
       size: Size(width: width, height: height),
       text: text
     );

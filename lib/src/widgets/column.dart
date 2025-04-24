@@ -1,6 +1,4 @@
-import 'package:flutter_tui/src/models/position.dart';
-import 'package:flutter_tui/src/models/size.dart';
-import 'package:flutter_tui/src/models/write_object.dart';
+import 'package:flutter_tui/src/models.dart';
 import 'package:flutter_tui/src/framework.dart';
 
 class Column extends StatelessWidget {

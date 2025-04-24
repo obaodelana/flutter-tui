@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_tui/src/framework.dart';
-import 'package:flutter_tui/src/models/size.dart';
-import 'package:flutter_tui/src/models/write_object.dart';
-import 'package:flutter_tui/src/models/window.dart';
+import 'package:flutter_tui/src/models.dart';
 
 class Writer {
   static Writer? _instance;
@@ -47,9 +45,7 @@ class Writer {
 
     // Clear screen
     final clearScreenInstructions = Window(size: _root!.size).clear();
-    for (final instr in clearScreenInstructions) {
-      stdout.write(instr);
-    }
+    stdout.writeAll(clearScreenInstructions);
 
     List<WriteObject> stack = [_root!];
     while (stack.isNotEmpty) {
@@ -68,9 +64,7 @@ class Writer {
           size: currentObj.size.copy(start: startingPosition)
         );
         final writeSequence = currentWindow.write(currentObj.text!);
-        for (final write in writeSequence) {
-          stdout.write(write);
-        }
+        stdout.writeAll(writeSequence);
       }
       
       // Add children to stack

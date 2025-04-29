@@ -62,6 +62,9 @@ class Writer {
         final currentWindow = Window(
           size: currentObj.size.copy(start: startingPosition)
         );
+
+        File("log.txt").writeAsStringSync("${currentObj.text}: $currentWindow\n", mode: FileMode.append);
+
         final writeSequence = currentWindow.write(currentObj.text!);
         stdout.writeAll(writeSequence);
       }

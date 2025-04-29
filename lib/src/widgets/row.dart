@@ -1,37 +1,10 @@
-import 'package:flutter_tui/src/models.dart';
-import 'package:flutter_tui/src/framework.dart';
+import 'package:flutter_tui/src/widgets/flex.dart';
 
-class Row extends StatelessWidget {
-  final List<Widget> children;
-
-  Row({required this.children});
-
-  @override
-  WriteObject createObject(Size constraint) {
-    // Equal width
-    int childWidth = constraint.width ~/ children.length;
-    var maxChildHeight = 1;
-
-    final sizedChildren = <WriteObject>[];
-    for (int i = 0; i < children.length; i++) {
-      var obj = children[i].createObject(Size(
-        width: childWidth,
-        height: constraint.height,
-        start: Position.x(i * childWidth)
-      ));
-      sizedChildren.add(obj);
-
-      if (obj.size.height > maxChildHeight) {
-        maxChildHeight = obj.size.height;
-      }
-    }
-
-    return WriteObject(
-      size: constraint.copy(
-        height: maxChildHeight,
-        width: childWidth * children.length
-      ),
-      children: sizedChildren
-    );
-  }
+class Row extends Flex {
+  Row({
+    required super.children,
+    super.direction = Axis.horizontal,
+    super.mainAxisAlignment = AxisAlignment.start,
+    super.crossAxisAlignment = AxisAlignment.start,
+  });
 }

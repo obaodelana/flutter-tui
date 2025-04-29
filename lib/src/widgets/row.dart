@@ -7,14 +7,14 @@ class Row extends StatelessWidget {
   Row({required this.children});
 
   @override
-  WriteObject build(Size constraint) {
+  WriteObject createObject(Size constraint) {
     // Equal width
     int childWidth = constraint.width ~/ children.length;
     var maxChildHeight = 1;
 
     final sizedChildren = <WriteObject>[];
     for (int i = 0; i < children.length; i++) {
-      var obj = children[i].build(Size(
+      var obj = children[i].createObject(Size(
         width: childWidth,
         height: constraint.height,
         start: Position.x(i * childWidth)

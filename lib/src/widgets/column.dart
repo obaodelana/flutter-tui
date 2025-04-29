@@ -7,14 +7,14 @@ class Column extends StatelessWidget {
   Column({required this.children});
 
   @override
-  WriteObject build(Size constraint) {
+  WriteObject createObject(Size constraint) {
     // Equal height
     int childHeight = constraint.height ~/ children.length;
     var maxChildWidth = 1;
 
     final sizedChildren = <WriteObject>[];
     for (int i = 0; i < children.length; i++) {
-      var obj = children[i].build(Size(
+      var obj = children[i].createObject(Size(
         width: constraint.width,
         height: childHeight,
         start: Position.y(i * childHeight)

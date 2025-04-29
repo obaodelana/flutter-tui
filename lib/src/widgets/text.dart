@@ -7,7 +7,7 @@ class Text extends StatelessWidget {
   Text(this.text);
 
   @override
-  WriteObject build(Size constraint) {
+  WriteObject createObject(Size constraint) {
     int textLen = text.length;
     int width = textLen % constraint.width;
     int height = (textLen / constraint.height).ceil();

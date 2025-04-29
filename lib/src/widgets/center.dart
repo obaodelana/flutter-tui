@@ -8,10 +8,10 @@ class Center extends StatelessWidget {
   Center({required this.child});
 
   @override
-  WriteObject build(Size constraint) {
+  WriteObject createObject(Size constraint) {
     return Align(
       child: child,
       alignment: Alignment.center
-    ).build(constraint);
+    ).createObject(constraint);
   }
 }
